@@ -69,4 +69,13 @@ const createUser = async (req, res) => {
 
 }
 
-export default { login, createUser };
+const getAllUser = async (req, res) => {
+  try {
+		const users = await db.Users.find();
+    return res.json({ users, success: true });
+	} catch (error) {
+		res.status(400).json({ status: true, error: error });
+	}
+}
+
+export default { login, createUser, getAllUser };
